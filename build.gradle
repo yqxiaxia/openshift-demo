@@ -1,0 +1,26 @@
+plugins {
+    id 'java'
+    id 'application'
+}
+
+group 'openshift-demo'
+version '1.0'
+
+sourceCompatibility = 1.8
+
+repositories {
+    mavenCentral()
+}
+
+application {
+    mainClassName = "com.HelloWorld"
+}
+
+jar {
+    from {
+        configurations.runtime.collect{zipTree(it)}
+    }
+    manifest {
+        attributes "Main-Class": "com.HelloWorld"
+    }
+}
